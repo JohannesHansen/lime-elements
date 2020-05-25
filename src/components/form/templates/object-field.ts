@@ -37,7 +37,11 @@ function renderCollapsibleField(props: ObjectFieldTemplateProps) {
 }
 
 function renderProperties(properties: ObjectFieldProperty[]) {
-    return properties.map((element) => element.content);
+    return React.createElement(
+        React.Fragment,
+        null,
+        properties.map((element) => element.content)
+    );
 }
 
 function isCollapsible(schema: any) {

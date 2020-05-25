@@ -9,7 +9,7 @@ import {
 } from '@stencil/core';
 import React from 'react';
 import { render, unmountComponentAtNode } from 'react-dom';
-import JSONSchemaForm from 'react-jsonschema-form';
+import JSONSchemaForm from '@rjsf/core';
 import retargetEvents from 'react-shadow-dom-retarget-events';
 import { FormError, ValidationStatus } from './form.types';
 import {
@@ -104,7 +104,8 @@ export class Form {
                     liveValidate: true,
                     showErrorList: false,
                     FieldTemplate: FieldTemplate,
-                    ArrayFieldTemplate: ArrayFieldTemplate,
+                    // Cast to any to avoid converting ArrayFieldTemplate to a stateless function component
+                    ArrayFieldTemplate: ArrayFieldTemplate as any,
                     ObjectFieldTemplate: ObjectFieldTemplate,
                     ref: this.setForm,
                     formContext: {

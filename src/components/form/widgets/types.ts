@@ -1,4 +1,7 @@
-export interface WidgetProps {
+import { WidgetProps as RjsfWidgetProps } from '@rjsf/core';
+
+// Extends rjsf widget prop types because the rjsf type does not include `rawErrors`
+export interface WidgetProps extends RjsfWidgetProps {
     id: string;
     label: string;
     schema: any;
@@ -19,5 +22,4 @@ export interface WidgetProps {
     };
     formContext: any;
     rawErrors: string[];
-    multiple?: boolean;
 }
