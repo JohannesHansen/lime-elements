@@ -190,7 +190,9 @@ export class InputField {
     }
 
     public componentDidUpdate() {
-        this.syncInvalidToTextField();
+        if (this.invalid) {
+            this.mdcTextField.valid = false;
+        }
     }
 
     public render() {
@@ -573,18 +575,5 @@ export class InputField {
         if (this.type === 'number') {
             event.preventDefault();
         }
-    }
-
-    private syncInvalidToTextField() {
-        if (!this.mdcTextField) {
-            return;
-        }
-
-        if (!this.mdcTextField.valid) {
-            return;
-        }
-
-        const isValid = !this.isInvalid();
-        this.mdcTextField.valid = isValid;
     }
 }

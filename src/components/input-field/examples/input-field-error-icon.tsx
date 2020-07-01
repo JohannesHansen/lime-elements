@@ -7,25 +7,41 @@ const MIN_LENGTH = 6;
 })
 export class InputFieldErrorIconExample {
     @State()
-    private value;
+    private valueNative;
+    @State()
+    private valueConsumer;
 
     constructor() {
-        this.onChange = this.onChange.bind(this);
+        this.onChangeNative = this.onChangeNative.bind(this);
+        this.onChangeConsumer = this.onChangeConsumer.bind(this);
     }
 
     public render() {
-        return (
+        return [
             <limel-input-field
-                label="Text Field"
+                label="Text Field with native validation"
                 minlength={MIN_LENGTH}
                 helperText="Please enter at least 6 characters!"
-                value={this.value}
-                onChange={this.onChange}
-            />
-        );
+                value={this.valueNative}
+                onChange={this.onChangeNative}
+            />,
+            <limel-input-field
+                label="Text Field with consumer validation"
+                invalid={
+                    !this.valueConsumer ||
+                    this.valueConsumer.length < MIN_LENGTH
+                }
+                helperText="Please enter at least 6 characters!"
+                value={this.valueConsumer}
+                onChange={this.onChangeConsumer}
+            />,
+        ];
     }
 
-    private onChange(event) {
-        this.value = event.detail;
+    private onChangeNative(event) {
+        this.valueNative = event.detail;
+    }
+    private onChangeConsumer(event) {
+        this.valueConsumer = event.detail;
     }
 }
