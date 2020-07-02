@@ -14,6 +14,7 @@ export class InputFieldErrorIconExample {
     constructor() {
         this.onChangeNative = this.onChangeNative.bind(this);
         this.onChangeConsumer = this.onChangeConsumer.bind(this);
+        this.isInvalid = this.isInvalid.bind(this);
     }
 
     public render() {
@@ -27,11 +28,9 @@ export class InputFieldErrorIconExample {
             />,
             <limel-input-field
                 label="Text Field with consumer validation"
-                invalid={
-                    !this.valueConsumer ||
-                    this.valueConsumer.length < MIN_LENGTH
-                }
-                helperText="Please enter at least 6 characters!"
+                type={'email'}
+                invalid={this.isInvalid()}
+                helperText="Please enter an email with the domain 'test.com'"
                 value={this.valueConsumer}
                 onChange={this.onChangeConsumer}
             />,
@@ -43,5 +42,9 @@ export class InputFieldErrorIconExample {
     }
     private onChangeConsumer(event) {
         this.valueConsumer = event.detail;
+    }
+
+    private isInvalid() {
+        return !this.valueConsumer || !this.valueConsumer.includes('test.com');
     }
 }
