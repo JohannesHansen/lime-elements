@@ -225,10 +225,6 @@ export class Table {
     }
 
     render() {
-        if (!config.featureSwitches.enableTable) {
-            return;
-        }
-
         return <div id="tabulator-table" />;
     }
 }
