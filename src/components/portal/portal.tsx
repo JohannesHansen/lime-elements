@@ -16,6 +16,7 @@ import { FlipModifier } from '@popperjs/core/lib/modifiers/flip';
  *   will be invoked, so `componentDidUnload` can not be used as a destructor (which is the wrong behavior anyway)
  *
  * @slot - Content to put inside the portal
+ * @private
  */
 @Component({
     tag: 'limel-portal',
