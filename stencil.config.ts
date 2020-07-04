@@ -1,6 +1,6 @@
 import { Config } from '@stencil/core';
 import { sass } from '@stencil/sass';
-import doczStarter from './rollup-plugin-docz-starter';
+import { kompendium } from 'kompendium';
 
 export const config: Config = {
     hashFileNames: false,
@@ -11,16 +11,23 @@ export const config: Config = {
             copy: [{ src: 'style/' }],
         },
         {
+            type: 'docs-custom',
+            strict: true,
+            generator: kompendium()
+        },
+        {
             type: 'www',
             serviceWorker: null,
-            dir: '.docz/public/stencil',
+            dir: 'www',
             copy: [
-                { src: 'components/**/examples/**/*.tsx' },
-                { src: 'components/**/examples/**/*.scss' },
                 { src: 'components/**/*.md' },
+                // {
+                //     src: '../node_modules/@lundalogik/lime-icons8/assets/',
+                //     dest: 'assets/',
+                // },
                 {
-                    src: '../node_modules/@lundalogik/lime-icons8/assets/',
-                    dest: 'assets/',
+                    src: '../node_modules/kompendium/dist/',
+                    dest: 'assets/kompendium/'
                 },
             ],
         },
@@ -33,7 +40,7 @@ export const config: Config = {
             ],
         },
     },
-    plugins: [sass(), doczStarter()],
+    plugins: [sass()],
     excludeSrc: [
         '**/test/**',
         '**/*.spec.*',
