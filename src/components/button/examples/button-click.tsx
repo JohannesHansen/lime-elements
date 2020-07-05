@@ -1,5 +1,14 @@
 import { Component, h, State } from '@stencil/core';
 
+/**
+ * The click handler in this example sets the attributes `loading` and
+ * `disabled` to `true`. After 1 second, the `loading` attribute is set to
+ * `false` again. After another 4 seconds, the button is once again enabled.
+ *
+ * When the `loading` attribute changes from `true` to `false`, the button
+ * automatically displays a checkmark icon for 2 seconds. Note that our click
+ * handler isn't actually involved in this.
+ */
 @Component({
     tag: 'limel-example-button-click',
     shadow: true,
